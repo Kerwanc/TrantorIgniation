@@ -1,10 +1,31 @@
 [gd_scene format=3 uid="uid://bnxbvi8rf2gmg"]
 
-[ext_resource type="Texture2D" uid="uid://8viw1t2ty2eq" path="res://assets/Characters/tile_0004.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://d1os6mj3sfvt" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://ccesqdord6ay" path="res://assets/Tiles/tile_0000.png" id="2_yqjtg"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwrxv"]
 
 [node name="Game" type="Node2D" unique_id=2020110931]
 
-[node name="Tile0004" type="Sprite2D" parent="." unique_id=1915432675]
-position = Vector2(504, 286)
-scale = Vector2(22.833332, 18.25)
-texture = ExtResource("1_uwrxv")
+[node name="CharacterBody2D" parent="." unique_id=1328390747 instance=ExtResource("1_uwrxv")]
+position = Vector2(16, 22)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=421693911]
+zoom = Vector2(3, 3)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1355699500]
+position = Vector2(15, 41)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1385618569]
+shape = SubResource("WorldBoundaryShape2D_uwrxv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=893163099]
+position = Vector2(-34, -4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1151892711]
+shape = SubResource("RectangleShape2D_uwrxv")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1825945184]
+texture = ExtResource("2_yqjtg")
