@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lj43eeum72hj" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://ba75k7i5yub1w" path="res://assets/Characters/SpaceExplorerSheet(1).png" id="2_g2els"]
+[ext_resource type="Script" uid="uid://bjv8mcwjefc48" path="res://scenes/player_colisions.gd" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("2_g2els")
@@ -77,7 +78,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 radius = 4.5
-height = 9.0
+height = 12.0
 
 [sub_resource type="Gradient" id="Gradient_g2els"]
 offsets = PackedFloat32Array(0.10283688, 0.28014183, 0.4490446, 0.72695035)
@@ -118,3 +119,8 @@ color_ramp = SubResource("Gradient_g2els")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=71976776]
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1610488314]
+script = ExtResource("3_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=897668653]
