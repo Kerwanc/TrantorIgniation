@@ -49,7 +49,6 @@ func _on_tomato_power_timer_timeout() -> void:
 	has_tomato_power = false
 	$TomatoParticles.emitting = false
 	tomato_power.emit()
-	print("ici")
 
 func _on_animation_finished():
 	if $AnimatedSprite2D.animation == "death":
