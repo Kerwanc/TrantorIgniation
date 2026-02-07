@@ -16,11 +16,6 @@ func _physics_process(_delta):
 	var local_pos = tilemap.to_local(pos)
 	var cell = tilemap.local_to_map(local_pos)
 	var alt_id = tilemap.get_cell_atlas_coords(0, cell)
-	print("Player head pos:", global_position)
-	print("TileMap local pos:", local_pos)
-	print("Cell coords:", cell)
-	print("Source ID:", tilemap.get_cell_source_id(0, cell))
-	print("Atlas coords:", tilemap.get_cell_atlas_coords(0, cell))
 	if alt_id != Vector2i(-1, -1):
 		print(alt_id)
 		print("HEAD HIT tile at:", cell)
