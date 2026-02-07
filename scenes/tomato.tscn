@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://de2e2xch0yrh5"]
+
+[ext_resource type="Texture2D" uid="uid://cbd62p8p43d4l" path="res://assets/tomato/Idle/TomatoIdle1.png" id="1_362f4"]
+[ext_resource type="Texture2D" uid="uid://6lfh5vfe5g4o" path="res://assets/tomato/Death/TomatoDeath1.png" id="1_p1vwv"]
+[ext_resource type="Texture2D" uid="uid://deya0k2t2lojx" path="res://assets/tomato/Idle/TomatoIdle2.png" id="2_nd1ge"]
+[ext_resource type="Texture2D" uid="uid://ctrxbtmstxore" path="res://assets/tomato/Death/TomatoDeath2.png" id="2_s13mo"]
+[ext_resource type="Texture2D" uid="uid://cjkpitykmh5ml" path="res://assets/tomato/Death/TomatoDeath3.png" id="3_4xium"]
+[ext_resource type="Texture2D" uid="uid://bmyj64oh4srhf" path="res://assets/tomato/Idle/TomatoIdle3.png" id="3_s3jb3"]
+[ext_resource type="Texture2D" uid="uid://cnhksum4n238w" path="res://assets/tomato/Idle/TomatoIdle4.png" id="4_c7kf0"]
+[ext_resource type="Texture2D" uid="uid://cncayfmtbhqd3" path="res://assets/tomato/Death/TomatoDeath4.png" id="4_wa4s8"]
+[ext_resource type="Texture2D" uid="uid://by6mg0hiaggq2" path="res://assets/tomato/Idle/TomatoIdle5.png" id="5_obglp"]
+[ext_resource type="Texture2D" uid="uid://bk8520i3nj1fv" path="res://assets/tomato/Death/TomatoDeath5.png" id="5_r87ho"]
+[ext_resource type="Script" uid="uid://dxea1p3wo8wwc" path="res://script/tomato.gd" id="6_nd1ge"]
+[ext_resource type="Texture2D" uid="uid://lh0hgojt5rbc" path="res://assets/tomato/Death/TomatoDeath6.png" id="6_r4a5y"]
+[ext_resource type="Texture2D" uid="uid://blh3btvkpeo1p" path="res://assets/tomato/Death/TomatoDeath7.png" id="7_oamqp"]
+[ext_resource type="Texture2D" uid="uid://dos61t4r5v00g" path="res://assets/tomato/Death/TomatoDeath8.png" id="8_esdvq"]
+[ext_resource type="Texture2D" uid="uid://dgl6agxlo0mhp" path="res://assets/tomato/Death/TomatoDeath9.png" id="9_mky1a"]
+[ext_resource type="Texture2D" uid="uid://bdnbbbaahapfo" path="res://assets/tomato/Death/TomatoDeath10.png" id="10_4vwof"]
+[ext_resource type="Texture2D" uid="uid://cmdtowpbu0ulh" path="res://assets/tomato/Death/TomatoDeath11.png" id="11_d2rvf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qstqu"]
+atlas = ExtResource("1_362f4")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdcqm"]
+atlas = ExtResource("2_nd1ge")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktmkh"]
+atlas = ExtResource("3_s3jb3")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1as48"]
+atlas = ExtResource("4_c7kf0")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykxua"]
+atlas = ExtResource("5_obglp")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xlik1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_p1vwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s13mo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4xium")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wa4s8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r87ho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r4a5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_oamqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_esdvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mky1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4vwof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_d2rvf")
+}],
+"loop": false,
+"name": &"death",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qstqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdcqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktmkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1as48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykxua")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gnycb"]
+radius = 4.1231055
+
+[node name="tomato" type="Area2D" unique_id=2130285749]
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1225701752]
+position = Vector2(0, -13)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_xlik1")
+animation = &"death"
+autoplay = "idle"
+frame = 10
+frame_progress = 1.0
+script = ExtResource("6_nd1ge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1754558103]
+shape = SubResource("CircleShape2D_gnycb")
+
+[connection signal="body_entered" from="." to="AnimatedSprite2D" method="_on_tomato_body_entered"]
