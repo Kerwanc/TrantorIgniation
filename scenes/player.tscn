@@ -195,6 +195,7 @@ collision_bounce = 0.5
 collision_use_scale = true
 
 [node name="Player" type="CharacterBody2D" unique_id=1328390747]
+collision_layer = 3
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1493116217]
