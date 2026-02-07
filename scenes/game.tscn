@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d1os6mj3sfvt" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dy1cxd6yg4435" path="res://scenes/game.gd" id="1_yq8nm"]
 [ext_resource type="PackedScene" uid="uid://cn8wiigbbyo1h" path="res://firstFloor.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bjw65y4v4q6yr" path="res://scenes/in_game_ui.tscn" id="4_iywne"]
 [ext_resource type="FontFile" uid="uid://b2krdh840t31a" path="res://assets/Fonts/Pirata_One/PirataOne-Regular.ttf" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://de2e2xch0yrh5" path="res://scenes/tomato.tscn" id="5_iywne"]
 
@@ -14,6 +15,7 @@ script = ExtResource("1_yq8nm")
 position = Vector2(-11, -85)
 
 [node name="Player" parent="." unique_id=1328390747 instance=ExtResource("1_uwrxv")]
+unique_name_in_owner = true
 position = Vector2(-6, 211)
 
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1445349713]
@@ -62,3 +64,11 @@ text = "Back to Menu"
 
 [node name="tomato" parent="." unique_id=2130285749 instance=ExtResource("5_iywne")]
 position = Vector2(-9, 88)
+
+[node name="GUILayer" type="CanvasLayer" parent="." unique_id=82634668]
+
+[node name="inGameUI" parent="GUILayer" unique_id=1154138203 instance=ExtResource("4_iywne")]
+offset_left = 1.0
+offset_right = 1.0
+
+[connection signal="pressed" from="GameOverLayer/MenuButton" to="." method="_on_menu_button_pressed"]
