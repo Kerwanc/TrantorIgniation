@@ -5,7 +5,7 @@ const MIN_JUMP_POWER = -100.0
 const MAX_JUMP_POWER = -700.0
 const CHARGE_RATE = 600.0
 const SHAKE_INCREASE_RATE = 5.0
-const SHAKE_MAX = 2.5
+const SHAKE_MAX = 2.5		
 
 var shake_intensity = 0.0
 var jump_charge = 0.0
@@ -30,15 +30,12 @@ func handle_landing() -> void :
 func handle_shake(delta: float) -> void:
 	if Input.is_action_pressed("ui_accept"):
 		shake_intensity = min(shake_intensity + SHAKE_INCREASE_RATE * delta, SHAKE_MAX)
-	
-		# Appliquer le tremblement aléatoire
 		var shake_offset = Vector2(
 			randf_range(-shake_intensity, shake_intensity),
 			randf_range(-shake_intensity, shake_intensity)
 		)
 		$AnimatedSprite2D.offset = shake_offset
 	else:
-		# Réduire l'intensité quand on relâche
 		shake_intensity = max(shake_intensity - SHAKE_INCREASE_RATE * 2 * delta, 0.0)
 		$AnimatedSprite2D.offset = Vector2.ZERO
 		
