@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bnxbvi8rf2gmg"]
 
 [ext_resource type="PackedScene" uid="uid://d1os6mj3sfvt" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://cn8wiigbbyo1h" path="res://firstFloor.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" path="res://firstFloor.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://cqhufwfymer6c" path="res://scenes/in_game_ui.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://cicy4hjfwkpmg" path="res://scenes/tomato.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=2020110931]
 position = Vector2(1, 0)
@@ -11,3 +13,12 @@ position = Vector2(-11, -85)
 
 [node name="Player" parent="." unique_id=1328390747 instance=ExtResource("1_uwrxv")]
 position = Vector2(-6, 211)
+
+[node name="tomato" parent="." unique_id=2130285749 instance=ExtResource("4_lbhrr")]
+position = Vector2(-67, 184)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1326252445]
+
+[node name="inGameUI" parent="CanvasLayer" unique_id=1154138203 instance=ExtResource("4_iywne")]
+offset_left = 1.0
+offset_right = 1.0
