@@ -103,6 +103,8 @@ emitting = false
 amount = 500
 lifetime = 0.4
 one_shot = true
+emission_shape = 1
+emission_sphere_radius = 1.0
 particle_flag_align_y = true
 direction = Vector2(-1, 0)
 spread = 30.0
@@ -112,3 +114,7 @@ scale_amount_min = 0.5
 scale_amount_max = 2.0
 color = Color(0.5482341, 0.56586486, 0.52507347, 1)
 color_ramp = SubResource("Gradient_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=71976776]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true

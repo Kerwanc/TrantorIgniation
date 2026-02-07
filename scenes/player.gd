@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const MIN_JUMP_POWER = -100.0
-const MAX_JUMP_POWER = -1000.0
-const CHARGE_RATE = 700.0
+const MAX_JUMP_POWER = -700.0
+const CHARGE_RATE = 600.0
 
 var jump_charge = 0.0
 var jump_used = false
