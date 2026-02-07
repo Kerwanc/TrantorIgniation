@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lj43eeum72hj" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://ba75k7i5yub1w" path="res://assets/Characters/SpaceExplorerSheet(1).png" id="2_g2els"]
-[ext_resource type="Script" uid="uid://cei3fn5pexj0" path="res://scenes/cpu_particles_2d.gd" id="3_dqkch"]
+[ext_resource type="Script" path="res://scenes/cpu_particles_2d.gd" id="3_dqkch"]
 [ext_resource type="Script" uid="uid://bjv8mcwjefc48" path="res://scenes/player_colisions.gd" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
@@ -101,6 +101,7 @@ gravity = Vector3(0, 98, 0)
 color_ramp = SubResource("GradientTexture1D_qlg0r")
 
 [node name="Player" type="CharacterBody2D" unique_id=1328390747]
+collision_layer = 3
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1493116217]
