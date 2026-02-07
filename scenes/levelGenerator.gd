@@ -7,7 +7,7 @@ extends Node
 
 const CHUNK_HEIGHT = 19.8
 const START_HEIGHT = -20.9
-const CHUNK_BEFORE_END = 2
+const CHUNK_BEFORE_END = 20
 const TILE_SIZE = 16
 
 var highest_generated_chunk := 0

@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://bnxbvi8rf2gmg"]
 
+[ext_resource type="Script" uid="uid://dy1cxd6yg4435" path="res://scenes/game.gd" id="1_ir15t"]
 [ext_resource type="PackedScene" uid="uid://d1os6mj3sfvt" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://bjw65y4v4q6yr" path="res://scenes/in_game_ui.tscn" id="3_kvuet"]
 [ext_resource type="PackedScene" uid="uid://cn8wiigbbyo1h" path="res://scenes/firstFloor.tscn" id="3_lbhrr"]
 [ext_resource type="Script" uid="uid://cvd0f2q74p5wa" path="res://scenes/levelGenerator.gd" id="3_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://k7ij4mbx6mko" path="res://scenes/chunks/chunk_2.tscn" id="4_gee14"]
 [ext_resource type="PackedScene" uid="uid://c2q3cgveor4i8" path="res://scenes/chunks/chunk_3.tscn" id="5_0tnpc"]
+[ext_resource type="FontFile" uid="uid://b2krdh840t31a" path="res://assets/Fonts/Pirata_One/PirataOne-Regular.ttf" id="5_ca42v"]
 [ext_resource type="PackedScene" uid="uid://de2e2xch0yrh5" path="res://scenes/tomato.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://bbpwuy70o8ysi" path="res://scenes/chunks/chunk_ez.tscn" id="6_vtaks"]
 [ext_resource type="PackedScene" uid="uid://bn165eoaibans" path="res://scenes/chunks/chunk_Tomato.tscn" id="7_0tnpc"]
@@ -58,12 +61,46 @@ outline_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
 
 [node name="Game" type="Node2D" unique_id=1748084737]
 position = Vector2(11, -386)
+script = ExtResource("1_ir15t")
 
 [node name="Node2D" parent="." unique_id=831772309 instance=ExtResource("3_lbhrr")]
 position = Vector2(-51, 392)
 
 [node name="Player" parent="." unique_id=1328390747 instance=ExtResource("1_uwrxv")]
+unique_name_in_owner = true
 position = Vector2(-10, 186)
+
+[node name="GUILayer" type="CanvasLayer" parent="." unique_id=809075671]
+
+[node name="inGameUI" parent="GUILayer" unique_id=1154138203 instance=ExtResource("3_kvuet")]
+
+[node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1395157728]
+
+[node name="BlackOverlay" type="ColorRect" parent="GameOverLayer" unique_id=774758579]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="GameOverLabel" type="Label" parent="GameOverLayer" unique_id=1055074572]
+offset_left = 476.0
+offset_top = 217.5
+offset_right = 676.0
+offset_bottom = 280.5
+theme_override_fonts/font = ExtResource("5_ca42v")
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+
+[node name="MenuButton" type="Button" parent="GameOverLayer" unique_id=193711739]
+offset_left = 493.0
+offset_top = 344.0
+offset_right = 659.0
+offset_bottom = 394.0
+theme_override_fonts/font = ExtResource("5_ca42v")
+theme_override_font_sizes/font_size = 24
+text = "Back to Menu"
 
 [node name="Node" type="Node" parent="." unique_id=671836667 node_paths=PackedStringArray("tilemap", "player")]
 script = ExtResource("3_u5sy4")
