@@ -19,4 +19,3 @@ func _physics_process(_delta):
 	if alt_id != Vector2i(-1, -1):
 		print(alt_id)
 		print("HEAD HIT tile at:", cell)
-		tilemap.erase_cell(0, cell)
