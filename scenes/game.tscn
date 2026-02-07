@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bnxbvi8rf2gmg"]
 
 [ext_resource type="PackedScene" uid="uid://d1os6mj3sfvt" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://dhb7ucjivrakh" path="res://scripts/game_manager.gd" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://cdyn2up5k6g1p" path="res://assets/tiles_packed.png" id="3_lnu2h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
@@ -628,3 +629,18 @@ position = Vector2(-2, -1)
 tile_set = SubResource("TileSet_iywne")
 format = 2
 layer_0/tile_data = PackedInt32Array(262143, 1310722, 6, 262142, 131074, 3, 262141, 65538, 3, 196606, 196610, 2, 196605, 65538, 2, 131070, 1376258, 9, 131069, 1310722, 9, 3, 1048578, 0, 4, 1048578, 0, 5, 1114114, 0, 2, 983042, 0, -65530, 524290, 1, 6, 524290, 3, 196611, 1114114, 4, 262147, 131074, 3, 262146, 131074, 3, 262145, 131074, 3, 196609, 1310722, 7, 196608, 1310722, 7, 196610, 1376258, 7, 262144, 65538, 3, 262148, 131074, 4, 262149, 131074, 4, 262150, 131074, 4, 262151, 131074, 4, 262152, 196610, 4, 196617, 262146, 4, 131080, 1114114, 5, 131079, 1048578, 5, 65544, 1114114, 4, 65543, 1048578, 4, 131082, 196610, 11, 65533, 2, 8, 131068, 1310722, 8, 131067, 1310722, 8, 131066, 1310722, 8, 131065, 1310722, 8, 131064, 1245186, 8, 65528, 1114114, 4, -7, 1048578, 5, -65544, 1048578, 5, -9, 1114114, 4, -262146, 196610, 1, -262147, 65538, 1, -196610, 196610, 3, -196611, 131074, 2, -196612, 65538, 1, -131076, 65538, 3, -131075, 196610, 3, -262143, 1179650, 6, -65535, 2, 3, -131071, 1179650, 7, -196607, 2, 3)
+
+[node name="GameManager" type="Node" parent="." unique_id=1231170628]
+script = ExtResource("3_lbhrr")
+
+[node name="Timer" type="Timer" parent="GameManager" unique_id=2115026314]
+process_callback = 0
+wait_time = 300.0
+
+[node name="TimerLabel" type="Label" parent="GameManager" unique_id=1099454858]
+offset_left = -148.0
+offset_top = -77.0
+offset_right = -94.0
+offset_bottom = -54.0
+theme_override_font_sizes/font_size = 16
+text = "Timer: "
