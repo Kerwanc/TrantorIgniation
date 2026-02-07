@@ -1,32 +1,82 @@
 [gd_scene format=3 uid="uid://bnxbvi8rf2gmg"]
 
+[ext_resource type="Script" uid="uid://dy1cxd6yg4435" path="res://scenes/game.gd" id="1_ir15t"]
 [ext_resource type="PackedScene" uid="uid://d1os6mj3sfvt" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://dy1cxd6yg4435" path="res://scenes/game.gd" id="1_yq8nm"]
-[ext_resource type="PackedScene" uid="uid://cn8wiigbbyo1h" path="res://firstFloor.tscn" id="3_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://bjw65y4v4q6yr" path="res://scenes/in_game_ui.tscn" id="4_iywne"]
-[ext_resource type="FontFile" uid="uid://b2krdh840t31a" path="res://assets/Fonts/Pirata_One/PirataOne-Regular.ttf" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bjw65y4v4q6yr" path="res://scenes/in_game_ui.tscn" id="3_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cn8wiigbbyo1h" path="res://scenes/firstFloor.tscn" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://cvd0f2q74p5wa" path="res://scenes/levelGenerator.gd" id="3_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://k7ij4mbx6mko" path="res://scenes/chunks/chunk_2.tscn" id="4_gee14"]
+[ext_resource type="PackedScene" uid="uid://c2q3cgveor4i8" path="res://scenes/chunks/chunk_3.tscn" id="5_0tnpc"]
+[ext_resource type="FontFile" uid="uid://b2krdh840t31a" path="res://assets/Fonts/Pirata_One/PirataOne-Regular.ttf" id="5_ca42v"]
 [ext_resource type="PackedScene" uid="uid://de2e2xch0yrh5" path="res://scenes/tomato.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://bbpwuy70o8ysi" path="res://scenes/chunks/chunk_ez.tscn" id="6_vtaks"]
+[ext_resource type="PackedScene" uid="uid://bn165eoaibans" path="res://scenes/chunks/chunk_Tomato.tscn" id="7_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://dnp0dkv7wpwct" path="res://scenes/tile_map.tscn" id="7_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://bwja8doa4he4w" path="res://scenes/chunks/chunkGoFuckYourself.tscn" id="8_vtaks"]
+[ext_resource type="PackedScene" uid="uid://ciuus1o3qudyq" path="res://scenes/chunks/chunkselfyougoFuck.tscn" id="9_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://pdhyawlcnciv" path="res://scenes/chunks/chunksUbetterBeLucky.tscn" id="10_dinhu"]
+[ext_resource type="PackedScene" uid="uid://ddr4sqadxc8pv" path="res://scenes/chunks/end.tscn" id="11_kvuet"]
 
-[node name="Game" type="Node2D" unique_id=2020110931]
-position = Vector2(1, 0)
-script = ExtResource("1_yq8nm")
+[sub_resource type="Animation" id="Animation_wqq75"]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1.0333333, 2.0333333, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-88, -150), Vector2(-88, -250), Vector2(-88, -240), Vector2(-88, -240), Vector2(999, -240)]
+}
+
+[sub_resource type="Animation" id="Animation_17xee"]
+resource_name = "showing tutorial (mini tutorial)"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.0333333, 2.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-88, 300), Vector2(-88, 275), Vector2(-88, 230), Vector2(-88, 245)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u5sy4"]
+_data = {
+&"RESET": SubResource("Animation_wqq75"),
+&"showing tutorial (mini tutorial)": SubResource("Animation_17xee")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_gee14"]
+font_color = Color(2.8887591, 0.43330124, 0.21009487, 1)
+outline_size = 3
+outline_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+
+[node name="Game" type="Node2D" unique_id=1748084737]
+position = Vector2(11, -386)
+script = ExtResource("1_ir15t")
 
 [node name="Node2D" parent="." unique_id=831772309 instance=ExtResource("3_lbhrr")]
-position = Vector2(-11, -85)
+position = Vector2(-51, 392)
 
 [node name="Player" parent="." unique_id=1328390747 instance=ExtResource("1_uwrxv")]
 unique_name_in_owner = true
-position = Vector2(-6, 211)
+position = Vector2(-10, 186)
 
-[node name="GUILayer" type="CanvasLayer" parent="." unique_id=82634668]
+[node name="GUILayer" type="CanvasLayer" parent="." unique_id=809075671]
 
-[node name="inGameUI" parent="GUILayer" unique_id=1154138203 instance=ExtResource("4_iywne")]
-offset_left = 1.0
-offset_right = 1.0
+[node name="inGameUI" parent="GUILayer" unique_id=1154138203 instance=ExtResource("3_kvuet")]
 
-[node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1445349713]
+[node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1395157728]
 
-[node name="BlackOverlay" type="ColorRect" parent="GameOverLayer" unique_id=43285645]
+[node name="BlackOverlay" type="ColorRect" parent="GameOverLayer" unique_id=774758579]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,41 +84,56 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.8)
 
-[node name="GameOverLabel" type="Label" parent="GameOverLayer" unique_id=646414162]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -100.0
-offset_right = 100.0
-offset_bottom = -50.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_lbhrr")
+[node name="GameOverLabel" type="Label" parent="GameOverLayer" unique_id=1055074572]
+offset_left = 476.0
+offset_top = 217.5
+offset_right = 676.0
+offset_bottom = 280.5
+theme_override_fonts/font = ExtResource("5_ca42v")
 theme_override_font_sizes/font_size = 48
 text = "GAME OVER"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="MenuButton" type="Button" parent="GameOverLayer" unique_id=1494841315]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = 20.0
-offset_right = 75.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="MenuButton" type="Button" parent="GameOverLayer" unique_id=193711739]
+offset_left = 493.0
+offset_top = 344.0
+offset_right = 659.0
+offset_bottom = 394.0
+theme_override_fonts/font = ExtResource("5_ca42v")
 theme_override_font_sizes/font_size = 24
 text = "Back to Menu"
+
+[node name="Node" type="Node" parent="." unique_id=671836667 node_paths=PackedStringArray("tilemap", "player")]
+script = ExtResource("3_u5sy4")
+tilemap = NodePath("../TileMap")
+player = NodePath("../Player")
+chunk_scenes = Array[PackedScene]([ExtResource("4_gee14"), ExtResource("5_0tnpc"), ExtResource("6_vtaks"), ExtResource("7_0tnpc"), ExtResource("8_vtaks"), ExtResource("9_kvpfn"), ExtResource("10_dinhu")])
+ending = ExtResource("11_kvuet")
+
+[node name="TileMap" parent="." unique_id=1740318476 instance=ExtResource("7_kvpfn")]
+position = Vector2(-10, 190)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=87718831]
+libraries/ = SubResource("AnimationLibrary_u5sy4")
+autoplay = &"RESET"
+
+[node name="Label" type="Label" parent="AnimationPlayer" unique_id=930740292]
+texture_filter = 1
+texture_repeat = 1
+anchors_preset = -1
+anchor_top = -0.238
+anchor_bottom = -0.238
+offset_left = -88.0
+offset_top = 4.223999
+offset_right = 111.000244
+offset_bottom = 53.224
+text = "5 MINUTES !
+Hold \"space\" to escape"
+label_settings = SubResource("LabelSettings_gee14")
+horizontal_alignment = 1
+uppercase = true
 
 [node name="tomato" parent="." unique_id=2130285749 instance=ExtResource("5_iywne")]
 position = Vector2(-9, 88)
 
-[connection signal="pressed" from="GameOverLayer/MenuButton" to="." method="_on_menu_button_pressed"]
+[node name="tomato2" parent="." unique_id=1671001491 instance=ExtResource("5_iywne")]
+position = Vector2(-20, 474)
