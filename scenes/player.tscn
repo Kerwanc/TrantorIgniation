@@ -78,12 +78,16 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 radius = 4.5
-height = 12.0
+height = 40.0
 
 [sub_resource type="Gradient" id="Gradient_g2els"]
 offsets = PackedFloat32Array(0.10283688, 0.28014183, 0.4490446, 0.72695035)
 colors = PackedColorArray(1, 0.95686275, 0.9019608, 1, 1, 0.94509804, 0.4627451, 1, 1, 0.59607846, 0, 1, 0.7176471, 0.10980392, 0.10980392, 1)
 metadata/_snap_count = 30
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
+radius = 5.0
+height = 12.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1328390747]
 script = ExtResource("1_g2els")
@@ -95,7 +99,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=719731779]
-position = Vector2(0, -9)
+position = Vector2(0, -24)
 shape = SubResource("CapsuleShape2D_3vyb7")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1410025910]
@@ -120,7 +124,10 @@ color_ramp = SubResource("Gradient_g2els")
 zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1610488314]
+[node name="HeadCollision" type="Area2D" parent="." unique_id=1610488314]
 script = ExtResource("3_qhqgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=897668653]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCollision" unique_id=897668653]
+position = Vector2(0, -17)
+shape = SubResource("CapsuleShape2D_qhqgy")
+debug_color = Color(0.6165244, 0.536488, 3.85046e-07, 0.41960785)
