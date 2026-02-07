@@ -2,8 +2,37 @@
 
 [ext_resource type="Script" uid="uid://lj43eeum72hj" path="res://scenes/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://ba75k7i5yub1w" path="res://assets/Characters/SpaceExplorerSheet(1).png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://2ijdmvqu51ie" path="res://assets/SpaceExplorerSheet.png" id="2_qlg0r"]
 [ext_resource type="Script" uid="uid://cei3fn5pexj0" path="res://scenes/cpu_particles_2d.gd" id="3_dqkch"]
 [ext_resource type="Script" uid="uid://bjv8mcwjefc48" path="res://scenes/player_colisions.gd" id="3_qhqgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(240, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(256, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(272, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
+atlas = ExtResource("2_qlg0r")
+region = Rect2(288, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("2_g2els")
@@ -35,6 +64,37 @@ region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dqkch"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur7pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4r1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oprun")
+}],
+"loop": true,
+"name": &"death_idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_smehm")
@@ -104,14 +164,45 @@ emission_box_extents = Vector3(2, 2, 0)
 gravity = Vector3(0, 98, 0)
 color_ramp = SubResource("GradientTexture1D_qlg0r")
 
+[sub_resource type="Gradient" id="Gradient_f1ej7"]
+offsets = PackedFloat32Array(0, 0.23626374, 0.44505495, 0.6208791, 0.7967033, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.8352941, 0, 1, 1, 0.45490196, 0, 1, 1, 0, 0, 1, 0.039215688, 0, 0, 1, 0, 0, 0, 0.7921569)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oprun"]
+gradient = SubResource("Gradient_f1ej7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a8ls1"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 70.0
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+damping_min = 20.0
+damping_max = 50.0
+scale_min = 2.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_oprun")
+collision_mode = 1
+collision_friction = 0.3
+collision_bounce = 0.5
+collision_use_scale = true
+
 [node name="Player" type="CharacterBody2D" unique_id=1328390747]
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1493116217]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_dqkch")
-animation = &"idle"
+animation = &"death_idle"
 autoplay = "idle"
+frame_progress = 0.74856347
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=719731779]
 position = Vector2(0, -9)
@@ -137,7 +228,7 @@ color_ramp = SubResource("Gradient_g2els")
 script = ExtResource("3_dqkch")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=71976776]
-zoom = Vector2(3, 3)
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 
 [node name="HeadCollision" type="Area2D" parent="." unique_id=1610488314]
@@ -158,3 +249,12 @@ preprocess = 1.0
 collision_base_size = 0.0
 trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_tuyoq")
+
+[node name="death" type="GPUParticles2D" parent="." unique_id=1207064211]
+emitting = false
+amount = 1500
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+collision_base_size = 47.86
+process_material = SubResource("ParticleProcessMaterial_a8ls1")

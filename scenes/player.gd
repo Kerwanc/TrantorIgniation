@@ -7,18 +7,41 @@ const CHARGE_RATE = 600.0
 const SHAKE_INCREASE_RATE = 5.0
 const SHAKE_MAX = 2.5		
 
+@onready var tilemap = get_parent().get_node("AssetsTiles")
+
 var shake_intensity = 0.0
 var jump_charge = 0.0
-var jump_used = false
+var jump_used = false 
+
+signal player_died
+var dead = false
+var death_animation_finished = false
+
+func _ready() -> void:
+	$AnimatedSprite2D.animation_finished.connect(_on_animation_finished)
+
+func die():
+	if not dead:
+		dead = true
+		set_physics_process(false)
+		$death.emitting = true;
+		$AnimatedSprite2D.play("death")
+
+func _on_animation_finished():
+	if $AnimatedSprite2D.animation == "death":
+		death_animation_finished = true
+		$AnimatedSprite2D.play("death_idle")
+		player_died.emit()
 
 func handle_charge_jump(delta : float) -> void :
 	if Input.is_action_pressed("ui_accept") and not jump_used:
 		jump_charge -= CHARGE_RATE * delta
-		jump_charge = clamp(jump_charge, MAX_JUMP_POWER, 0.0)
+		if jump_charge < -1500 :
+			die()
 
 func handle_release_jump() -> void :
 	if Input.is_action_just_released("ui_accept") and not jump_used:
-		velocity.y = MIN_JUMP_POWER + jump_charge
+		velocity.y = MIN_JUMP_POWER + clamp(jump_charge, MAX_JUMP_POWER, 0.0)
 		jump_charge = 0.0
 		jump_used = true
 
@@ -28,7 +51,7 @@ func handle_landing() -> void :
 		jump_charge = 0.0
 
 func handle_shake(delta: float) -> void:
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_pressed("ui_accept") and is_on_floor():
 		shake_intensity = min(shake_intensity + SHAKE_INCREASE_RATE * delta, SHAKE_MAX)
 		var shake_offset = Vector2(
 			randf_range(-shake_intensity, shake_intensity),
@@ -68,6 +91,9 @@ func manage_particules_orientation(direction) -> void:
 		particles.rotation_degrees = 0
 	
 func proccess_animation() -> void :
+	if dead: 
+		return
+		
 	var direction := Input.get_axis("ui_left", "ui_right")
 	manage_particules_orientation(direction)
 	if direction :
@@ -84,7 +110,12 @@ func proccess_animation() -> void :
 		$AnimatedSprite2D.play("falling")
 		$GPUParticles2D.emitting = false
 
-
+func handle_tiles() -> void :
+	var collision = get_last_slide_collision()
+	if collision == null:
+		return
+	var normal = collision.get_normal()
+	print(normal)
 	
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
