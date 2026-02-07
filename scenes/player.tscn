@@ -78,7 +78,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 radius = 4.5
-height = 40.0
+height = 12.0
 
 [sub_resource type="Gradient" id="Gradient_g2els"]
 offsets = PackedFloat32Array(0.10283688, 0.28014183, 0.4490446, 0.72695035)
@@ -99,7 +99,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=719731779]
-position = Vector2(0, -24)
+position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_3vyb7")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1410025910]
@@ -121,7 +121,7 @@ color = Color(0.5482341, 0.56586486, 0.52507347, 1)
 color_ramp = SubResource("Gradient_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=71976776]
-zoom = Vector2(3, 3)
+zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 
 [node name="HeadCollision" type="Area2D" parent="." unique_id=1610488314]

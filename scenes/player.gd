@@ -5,6 +5,8 @@ const MIN_JUMP_POWER = -100.0
 const MAX_JUMP_POWER = -700.0
 const CHARGE_RATE = 600.0
 
+@onready var tilemap = get_parent().get_node("AssetsTiles")
+
 var jump_charge = 0.0
 var jump_used = false
 
@@ -68,7 +70,12 @@ func proccess_animation() -> void :
 		$AnimatedSprite2D.play("falling")
 		$CPUParticles2D.emitting = false
 
-
+func handle_tiles() -> void :
+	var collision = get_last_slide_collision()
+	if collision == null:
+		return
+	var normal = collision.get_normal()
+	print(normal)
 	
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
