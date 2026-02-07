@@ -33,9 +33,6 @@ func handle_jump(delta : float) -> void:
 func handle_gravity(delta) :
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	# setting the nb of jump to basic
-	if is_on_floor():
-		MAX_JUMPS = CURRENT_MAX_JUMP
 
 func update_velocity() -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
