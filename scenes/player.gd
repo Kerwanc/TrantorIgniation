@@ -8,11 +8,13 @@ const SHAKE_INCREASE_RATE = 5.0
 const SHAKE_MAX = 2.5		
 
 @onready var tilemap = get_parent().get_node("AssetsTiles")
+@onready var gui = $"../GUILayer/inGameUI"
 
 var shake_intensity = 0.0
 var jump_charge = 0.0
 var jump_used = false 
 
+signal tomato_power
 signal player_died
 var dying = false
 var death_animation_finished = false
@@ -40,10 +42,14 @@ func activate_tomato_power() -> void:
 		if velocity.y < 0 :
 			$TomatoParticles.emitting = true 
 		$TomatoPowerTimer.start(10.0)
+		tomato_power.emit()
+
 
 func _on_tomato_power_timer_timeout() -> void:
 	has_tomato_power = false
 	$TomatoParticles.emitting = false
+	tomato_power.emit()
+	print("ici")
 
 func _on_animation_finished():
 	if $AnimatedSprite2D.animation == "death":
@@ -137,6 +143,7 @@ func handle_tiles() -> void :
 
 func handle_flight(delta: float) :
 	if Input.is_action_pressed("ui_accept") :
+		gui.time_skip(0.1)
 		velocity.y = MIN_JUMP_POWER
 
 func _physics_process(delta: float) -> void:

@@ -18,6 +18,12 @@ position = Vector2(-11, -85)
 unique_name_in_owner = true
 position = Vector2(-6, 211)
 
+[node name="GUILayer" type="CanvasLayer" parent="." unique_id=82634668]
+
+[node name="inGameUI" parent="GUILayer" unique_id=1154138203 instance=ExtResource("4_iywne")]
+offset_left = 1.0
+offset_right = 1.0
+
 [node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1445349713]
 
 [node name="BlackOverlay" type="ColorRect" parent="GameOverLayer" unique_id=43285645]
@@ -64,11 +70,5 @@ text = "Back to Menu"
 
 [node name="tomato" parent="." unique_id=2130285749 instance=ExtResource("5_iywne")]
 position = Vector2(-9, 88)
-
-[node name="GUILayer" type="CanvasLayer" parent="." unique_id=82634668]
-
-[node name="inGameUI" parent="GUILayer" unique_id=1154138203 instance=ExtResource("4_iywne")]
-offset_left = 1.0
-offset_right = 1.0
 
 [connection signal="pressed" from="GameOverLayer/MenuButton" to="." method="_on_menu_button_pressed"]
