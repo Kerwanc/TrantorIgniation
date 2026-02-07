@@ -4,9 +4,14 @@
 [ext_resource type="PackedScene" path="res://firstFloor.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cqhufwfymer6c" path="res://scenes/in_game_ui.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://cicy4hjfwkpmg" path="res://scenes/tomato.tscn" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://dy1cxd6yg4435" path="res://scenes/game.gd" id="1_yq8nm"]
+[ext_resource type="PackedScene" uid="uid://cn8wiigbbyo1h" path="res://firstFloor.tscn" id="3_lbhrr"]
+[ext_resource type="FontFile" uid="uid://b2krdh840t31a" path="res://assets/Fonts/Pirata_One/PirataOne-Regular.ttf" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://de2e2xch0yrh5" path="res://scenes/tomato.tscn" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=2020110931]
 position = Vector2(1, 0)
+script = ExtResource("1_yq8nm")
 
 [node name="Node2D" parent="." unique_id=831772309 instance=ExtResource("3_lbhrr")]
 position = Vector2(-11, -85)
@@ -22,3 +27,50 @@ position = Vector2(-67, 184)
 [node name="inGameUI" parent="CanvasLayer" unique_id=1154138203 instance=ExtResource("4_iywne")]
 offset_left = 1.0
 offset_right = 1.0
+
+[node name="GameOverLayer" type="CanvasLayer" parent="." unique_id=1445349713]
+
+[node name="BlackOverlay" type="ColorRect" parent="GameOverLayer" unique_id=43285645]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="GameOverLabel" type="Label" parent="GameOverLayer" unique_id=646414162]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_lbhrr")
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="GameOverLayer" unique_id=1494841315]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Back to Menu"
+
+[node name="tomato" parent="." unique_id=2130285749 instance=ExtResource("5_iywne")]
+position = Vector2(-9, 88)
