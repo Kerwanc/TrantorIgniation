@@ -618,6 +618,11 @@ position = Vector2(1, 0)
 [node name="Player" parent="." unique_id=1328390747 instance=ExtResource("1_uwrxv")]
 position = Vector2(16, 22)
 
+[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=421693911]
+position = Vector2(-16, -22)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
 [node name="TileMap" type="TileMap" parent="." unique_id=1415908150]
 position = Vector2(-2, -1)
 tile_set = SubResource("TileSet_iywne")
