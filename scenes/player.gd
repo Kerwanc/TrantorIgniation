@@ -14,18 +14,35 @@ var jump_charge = 0.0
 var jump_used = false 
 
 signal player_died
-var dead = false
+var dying = false
 var death_animation_finished = false
+var has_tomato_power = false
 
 func _ready() -> void:
 	$AnimatedSprite2D.animation_finished.connect(_on_animation_finished)
 
 func die():
-	if not dead:
-		dead = true
+	if not dying:
+		dying = true
 		set_physics_process(false)
 		$death.emitting = true;
 		$AnimatedSprite2D.play("death")
+
+func activate_tomato_power() -> void:
+	var direction := Input.get_axis("ui_left", "ui_right")
+	if not has_tomato_power:
+		has_tomato_power = true
+		$GPUParticles2D.emitting = false
+		if direction < 0:
+			$TomatoParticles.rotation_degrees = -45
+			$TomatoParticles.position.x = 4
+		if velocity.y < 0 :
+			$TomatoParticles.emitting = true 
+		$TomatoPowerTimer.start(10.0)
+
+func _on_tomato_power_timer_timeout() -> void:
+	has_tomato_power = false
+	$TomatoParticles.emitting = false
 
 func _on_animation_finished():
 	if $AnimatedSprite2D.animation == "death":
@@ -80,7 +97,7 @@ func update_velocity() -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func manage_particules_orientation(direction) -> void:
-	var particles = $GPUParticles2D
+	var particles = $TomatoParticles if has_tomato_power else $GPUParticles2D
 	if direction > 0:
 		particles.rotation_degrees = 45
 		particles.position.x = -4
@@ -91,9 +108,9 @@ func manage_particules_orientation(direction) -> void:
 		particles.rotation_degrees = 0
 	
 func proccess_animation() -> void :
-	if dead: 
+	if dying: 
 		return
-		
+	var particles = $TomatoParticles if has_tomato_power else $GPUParticles2D
 	var direction := Input.get_axis("ui_left", "ui_right")
 	manage_particules_orientation(direction)
 	if direction :
@@ -105,10 +122,10 @@ func proccess_animation() -> void :
 			$AnimatedSprite2D.play("idle")
 	if velocity.y < 0 :
 		$AnimatedSprite2D.play("flying")
-		$GPUParticles2D.emitting = true
+		particles.emitting = true
 	if velocity.y > 0 :
 		$AnimatedSprite2D.play("falling")
-		$GPUParticles2D.emitting = false
+		particles.emitting = false
 
 func handle_tiles() -> void :
 	var collision = get_last_slide_collision()
@@ -116,11 +133,18 @@ func handle_tiles() -> void :
 		return
 	var normal = collision.get_normal()
 	print(normal)
-	
+
+func handle_flight(delta: float) :
+	if Input.is_action_pressed("ui_accept") :
+		velocity.y = MIN_JUMP_POWER
+
 func _physics_process(delta: float) -> void:
 	handle_gravity(delta)
-	handle_jump(delta)	
+	if has_tomato_power :
+		handle_flight(delta)
+	else :
+		handle_jump(delta)	
+		handle_shake(delta)
 	update_velocity()
-	handle_shake(delta)
 	proccess_animation()
 	move_and_slide()

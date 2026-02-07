@@ -259,3 +259,19 @@ one_shot = true
 explosiveness = 1.0
 collision_base_size = 47.86
 process_material = SubResource("ParticleProcessMaterial_a8ls1")
+
+[node name="TomatoParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-4, -4)
+emitting = false
+amount = 1000
+lifetime = 0.5
+preprocess = 1.0
+collision_base_size = 0.0
+trail_lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_tuyoq")
+modulate = Color(1, 0.2, 0.2, 1)
+
+[node name="TomatoPowerTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="TomatoPowerTimer" to="." method="_on_tomato_power_timer_timeout"]
