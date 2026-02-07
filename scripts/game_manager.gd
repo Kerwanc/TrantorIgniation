@@ -5,6 +5,7 @@ extends Node
 
 var timer: float = 300
 var timer_ended: bool = false
+var timer_color = "white"
 
 func format_time(time: float) -> String:
 	var min: int = time / 60
@@ -15,10 +16,23 @@ func format_time(time: float) -> String:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	player.tomato_power.connect(change_timer_color)
+
+func change_timer_color() -> void:
+	if timer_color == "white":
+		timer_color = "red"
+		timer_label.add_theme_color_override("font_color", timer_color)
+		
+		return
+	if timer_color == "red":
+		timer_color = "white"
+		timer_label.add_theme_color_override("font_color", timer_color)
+	return
+		
 	
 func time_skip(delay: float) -> void:
 	timer -= delay
+	timer_label.add_theme_color_override("font_color", "red")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
