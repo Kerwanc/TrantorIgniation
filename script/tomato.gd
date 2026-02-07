@@ -1,11 +1,10 @@
 extends AnimatedSprite2D
 
-signal tomato_collected(tomato)
-
 var alive = true
 
 func _on_tomato_body_entered(body: Node2D) -> void:
-	if alive:
+	if alive and body.is_in_group("player"):
 		alive = false
-		tomato_collected.emit(self)
+		if body.has_method("activate_tomato_power"):
+			body.activate_tomato_power()
 		$".".play("death")

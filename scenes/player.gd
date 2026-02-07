@@ -22,6 +22,7 @@ var has_tomato_power = false
 
 func _ready() -> void:
 	$AnimatedSprite2D.animation_finished.connect(_on_animation_finished)
+	add_to_group("player")
 
 func die():
 	if not dying:
