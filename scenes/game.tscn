@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://k7ij4mbx6mko" path="res://scenes/chunks/chunk_2.tscn" id="4_gee14"]
 [ext_resource type="PackedScene" uid="uid://c2q3cgveor4i8" path="res://scenes/chunks/chunk_3.tscn" id="5_0tnpc"]
 [ext_resource type="FontFile" uid="uid://b2krdh840t31a" path="res://assets/Fonts/Pirata_One/PirataOne-Regular.ttf" id="5_ca42v"]
-[ext_resource type="PackedScene" uid="uid://de2e2xch0yrh5" path="res://scenes/tomato.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://bbpwuy70o8ysi" path="res://scenes/chunks/chunk_ez.tscn" id="6_vtaks"]
 [ext_resource type="PackedScene" uid="uid://bn165eoaibans" path="res://scenes/chunks/chunk_Tomato.tscn" id="7_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://dnp0dkv7wpwct" path="res://scenes/tile_map.tscn" id="7_kvpfn"]
@@ -131,9 +130,3 @@ Hold \"space\" to escape"
 label_settings = SubResource("LabelSettings_gee14")
 horizontal_alignment = 1
 uppercase = true
-
-[node name="tomato" parent="." unique_id=2130285749 instance=ExtResource("5_iywne")]
-position = Vector2(-9, 88)
-
-[node name="tomato2" parent="." unique_id=1671001491 instance=ExtResource("5_iywne")]
-position = Vector2(-20, 474)
