@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://cn8wiigbbyo1h" path="res://firstFloor.tscn" id="3_lbhrr"]
 
 [node name="Game" type="Node2D" unique_id=2020110931]
+position = Vector2(1, 0)
 
 [node name="Node2D" parent="." unique_id=831772309 instance=ExtResource("3_lbhrr")]
-position = Vector2(-23, -160)
+position = Vector2(-11, -85)
 
 [node name="Player" parent="." unique_id=1328390747 instance=ExtResource("1_uwrxv")]
-position = Vector2(0, 135)
+position = Vector2(-6, 211)
